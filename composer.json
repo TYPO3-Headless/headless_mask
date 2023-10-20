@@ -1,0 +1,42 @@
+{
+  "name": "nitsan/ns-headless-mask",
+  "type": "typo3-cms-extension",
+  "description": "Support headless for the mask elements",
+  "keywords": [
+    "TYPO3",
+    "headless",
+    "pwa",
+    "json",
+    "mask"
+  ],
+  "license": [
+    "GPL-2.0-or-later"
+  ],
+  "authors": [
+    {
+      "name": "T3: Nilesh Malankiya",
+      "role": "Developer"
+    },
+    {
+      "name": "Nitsan Technologies Pvt. Ltd",
+      "email": "info@nitsan.in"
+    }
+  ],
+  "require": {
+    "typo3/cms-core": "^12.0"
+  },
+  "suggest": {
+  	"friendsoftypo3/headless": "^4.0",
+    "mask/mask": "^8.3"
+  },
+  "extra": {
+     "typo3/cms": {
+        "extension-key": "ns_headless_mask"
+     }
+  },
+  "autoload": {
+    "psr-4": {
+      "NITSAN\\NsHeadlessMask\\": "Classes"
+    }
+  }
+}

@@ -8,7 +8,7 @@ Extension requires TYPO3 in version at least 9.5.
 Install extension using composer\
 ``composer require nitsan/ns-headless-mask``
 
-and then, run the below command, and you are ready to go.
+and then, run the below command, and you are ready to go.\
 ``typo3 nsheadlessmask:generate``
 
 

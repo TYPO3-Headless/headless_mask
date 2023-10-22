@@ -24,6 +24,7 @@ class GenerateElementTsCommand extends Command
         if (Environment::isComposerMode()) {
             $typoScriptFilePath = Environment::getProjectPath() . '/vendor/nitsan/ns-headless-mask/Configuration/TypoScript/setup.typoscript';
         }
+
         GeneralUtility::writeFile($typoScriptFilePath, $tsComponents);
         return Command::SUCCESS;
     }

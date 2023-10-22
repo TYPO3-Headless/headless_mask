@@ -62,7 +62,9 @@ class MaskElementsUtility
                 ";
             }
         }
-        return $tsStringComponent;
+        return 'tt_content {'."\n"
+            .$tsStringComponent.
+        "\n".'}';
     }
 
     private function getElements(): array
@@ -107,6 +109,7 @@ class MaskElementsUtility
 
     private function getFieldTypoScript(string $fieldType, string $fieldKey, string $fieldName)
     {
+        $fieldName = preg_replace('/[^a-zA-Z0-9_ -]/s','',$fieldName);
         return match ($fieldType) {
             'file', 'media', 'image' => "
                 $fieldName = TEXT

@@ -1,0 +1,16 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  NITSAN\NsHeadlessMask\:
+    resource: '../Classes/*'
+
+  NITSAN\NsHeadlessMask\Command\GenerateElementTsCommand:
+    tags:
+      -
+        name: console.command
+        command: 'nsheadlessmask:generate'
+        description: 'Generate TypoScript of each elements'
+

@@ -8,6 +8,7 @@ class MaskElementsUtility
         $tsStringComponent = '';
         $elements = $this->getElements();
         foreach ($elements as $theComponent => $elems) {
+    
             $tsStringForFields = '';
             $fieldTsConfig = '';
             if ($fields = $elems['columnsOverrides']){
@@ -17,6 +18,7 @@ class MaskElementsUtility
                     if (!key_exists($fieldKey, $GLOBALS['TCA'])) {
                         $fieldTsConfig .= $this->getFieldTypoScript($fieldType, $fieldKey, $fieldName);
                     }
+                    
                     if (key_exists($fieldKey, $GLOBALS['TCA'])) {
                         $nestedFieldTsConfig = '';
                         $nestedFields = $this->getNestedFields($GLOBALS['TCA'][$fieldKey]);
@@ -109,6 +111,72 @@ class MaskElementsUtility
 
     private function getFieldTypoScript(string $fieldType, string $fieldKey, string $fieldName)
     {
+        $fieldName = preg_replace('/[^a-zA-Z0-9_ -]/s','',$fieldName);
+        return match ($fieldType) {
+            'file', 'media', 'image' => "
+                $fieldName = TEXT
+                $fieldName {
+                    dataProcessing {
+                        10 = FriendsOfTYPO3\Headless\DataProcessing\FilesProcessor
+                        10 {
+                            references.fieldName = $fieldKey
+                            as = image
+                            processingConfiguration {
+                                delayProcessing = 1
+                            }
+                        }
+                    }
+                }
+            ",
+            default => $this->getNestedFieldTyposcript($fieldKey, $fieldName),
+        };
+    }
+
+    private function getNestedFieldTyposcript(string $fieldKey, string $fieldName) {
+        if(key_exists($fieldKey, $GLOBALS['TCA'])) {
+            $childFieldsTsConfig = '';
+            $tsStringForFields = '';
+            $nestedChildFields = $this->getNestedFields($GLOBALS['TCA'][$fieldKey]);
+
+                foreach($nestedChildFields as $childKey => $childFieldsValue) {
+                    $childNestedFieldName = $childFieldsValue['label'] ? $this->dashesToCamelCase($childFieldsValue['label']) : $childKey;
+                    $childFieldsTsConfig .= $this->getFieldTypoScript($childFieldsValue['type'], $childKey, $childNestedFieldName);
+                    $childFieldsTsConfig .= $this->getChildFieldTyposcript($childFieldsValue['type'], $childKey, $childNestedFieldName);
+                }
+
+                $tsStringForFields .="
+                $fieldName = TEXT
+                $fieldName {
+                    dataProcessing {
+                        10 = FriendsOfTYPO3\Headless\DataProcessing\DatabaseQueryProcessor
+                        10 {
+                            table = $fieldKey
+                            where.field = uid
+                            pidInList.field = pid
+                            where.intval = 1
+                            where.dataWrap = parentid = |
+                            orderBy = sorting
+                            as = content
+                            fields {
+                                $childFieldsTsConfig
+                            }
+                        }
+                    }
+                }
+            ";
+            return $tsStringForFields;
+        } else {
+            return "
+                $fieldName = TEXT
+                $fieldName {
+                    field = $fieldKey
+                    parseFunc =< lib.parseFunc_links
+                }
+            ";
+        }
+    }
+
+    private function getChildFieldTyposcript(string $fieldType, string $fieldKey, string $fieldName) {
         $fieldName = preg_replace('/[^a-zA-Z0-9_ -]/s','',$fieldName);
         return match ($fieldType) {
             'file', 'media', 'image' => "

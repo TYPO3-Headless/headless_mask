@@ -128,6 +128,19 @@ class MaskElementsUtility
                     }
                 }
             ",
+            'link' => "
+                $fieldName = TEXT
+                $fieldName {
+                    field = $fieldKey
+                    as = link
+                    typolink {
+                        parameter {
+                            field = $fieldKey
+                        }
+                        returnLast = url
+                    }
+                }
+            ",
             default => $this->getNestedFieldTyposcript($fieldKey, $fieldName),
         };
     }
@@ -191,6 +204,19 @@ class MaskElementsUtility
                                 delayProcessing = 1
                             }
                         }
+                    }
+                }
+            ",
+            'link' => "
+                $fieldName = TEXT
+                $fieldName {
+                    field = $fieldKey
+                    as = link
+                    typolink {
+                        parameter {
+                            field = $fieldKey
+                        }
+                        returnLast = url
                     }
                 }
             ",

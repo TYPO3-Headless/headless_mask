@@ -137,7 +137,7 @@ class MaskElementsUtility
                         parameter {
                             field = $fieldKey
                         }
-                        returnLast = url
+                        returnLast = result
                     }
                 }
             ",
@@ -216,7 +216,7 @@ class MaskElementsUtility
                         parameter {
                             field = $fieldKey
                         }
-                        returnLast = url
+                        returnLast = result
                     }
                 }
             ",

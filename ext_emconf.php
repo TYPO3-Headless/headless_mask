@@ -16,6 +16,7 @@ $EM_CONF['headless_mask'] = [
         'conflicts' => [],
         'suggests' => [
             'headless' => '2.0.0-4.9.9',
+            'mask' => '8.0.0-8.9.9'
         ],
     ],
 ];

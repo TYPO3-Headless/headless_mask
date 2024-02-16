@@ -1,15 +1,15 @@
-# TYPO3 Extension "ns_headless_mask" - Provides TypoScript configuration to render proper JSON from EXT:mask
+# TYPO3 Extension "headless_mask" - Provides TypoScript configuration to render proper JSON from EXT:mask
 This extension provides integration to headless extension with mask extension.
 
 ## Requirements
-Extension requires TYPO3 in version at least 9.5.
+Extension requires TYPO3 in version at least 12.4.
 
 ## TYPO3 Installation
 Install extension using composer\
-``composer require nitsan/ns-headless-mask``
+``composer require friendsoftypo3/headless_mask``
 
 and then, run the below command, and you are ready to go.\
-``typo3 nsheadlessmask:generate``
+``typo3 headlessmask:generate``
 
 
 

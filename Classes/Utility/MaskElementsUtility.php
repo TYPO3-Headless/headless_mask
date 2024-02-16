@@ -1,6 +1,6 @@
 <?php
 
-namespace NITSAN\NsHeadlessMask\Utility;
+namespace Friendsoftypo3\HeadlessMask\Utility;
 
 class MaskElementsUtility
 {

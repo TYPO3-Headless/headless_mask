@@ -1,8 +1,8 @@
 <?php
 
-namespace NITSAN\NsHeadlessMask\Command;
+namespace Friendsoftypo3\HeadlessMask\Command;
 
-use NITSAN\NsHeadlessMask\Utility\MaskElementsUtility;
+use Friendsoftypo3\HeadlessMask\Utility\MaskElementsUtility;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -23,9 +23,9 @@ class GenerateElementTsCommand extends Command
         //Method to call prepared the elements TypoScript...
         $tsComponents = $maskUtility->setupComponentWiseTypoScript();
 
-        $typoScriptFileDir = Environment::getPublicPath() . '/typo3conf/ext/ns_headless_mask/Configuration/TypoScript/';
+        $typoScriptFileDir = Environment::getPublicPath() . '/typo3conf/ext/headless_mask/Configuration/TypoScript/';
         if (Environment::isComposerMode()) {
-            $typoScriptFileDir = Environment::getProjectPath() . '/vendor/nitsan/ns-headless-mask/Configuration/TypoScript/';
+            $typoScriptFileDir = Environment::getProjectPath() . '/vendor/friendsoftypo3/headless_mask/Configuration/TypoScript/';
         }
 
         //Check if directory is available or not, if not then it will be created

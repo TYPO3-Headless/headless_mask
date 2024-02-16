@@ -1,5 +1,5 @@
 {
-  "name": "nitsan/ns-headless-mask",
+  "name": "friendsoftypo3/headless_mask",
   "type": "typo3-cms-extension",
   "description": "Support headless for the mask elements",
   "keywords": [
@@ -31,12 +31,12 @@
   },
   "extra": {
      "typo3/cms": {
-        "extension-key": "ns_headless_mask"
+        "extension-key": "headless_mask"
      }
   },
   "autoload": {
     "psr-4": {
-      "NITSAN\\NsHeadlessMask\\": "Classes"
+      "Friendsoftypo3\\HeadlessMask\\": "Classes"
     }
   }
 }

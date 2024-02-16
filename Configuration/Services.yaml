@@ -4,13 +4,13 @@ services:
     autoconfigure: true
     public: false
 
-  NITSAN\NsHeadlessMask\:
+  Friendsoftypo3\HeadlessMask\:
     resource: '../Classes/*'
 
-  NITSAN\NsHeadlessMask\Command\GenerateElementTsCommand:
+  Friendsoftypo3\HeadlessMask\Command\GenerateElementTsCommand:
     tags:
       -
         name: console.command
-        command: 'nsheadlessmask:generate'
+        command: 'headlessmask:generate'
         description: 'Generate TypoScript of each elements'
 

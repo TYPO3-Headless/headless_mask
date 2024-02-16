@@ -1,6 +1,6 @@
 <?php
-$EM_CONF['ns_headless_mask'] = [
-    'title' => 'Ns Headless Mask',
+$EM_CONF['headless_mask'] = [
+    'title' => 'Headless Mask',
     'description' => 'Support headless for the mask elements',
     'state' => 'stable',
     'author' => 'T3: Nilesh Malankiya',
